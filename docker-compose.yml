@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /Users/sudoyu/orenominio/orenonuxt:/usr/share/nginx/html
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - /Users/sudoyu/orenominio:/data
+    environment:
+      - "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE"
+      - "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
